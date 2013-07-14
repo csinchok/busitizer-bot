@@ -40,3 +40,5 @@ nosetests.xml
 
 outputs/*
 !outputs/README*
+
+keys.py

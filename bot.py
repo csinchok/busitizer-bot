@@ -14,12 +14,17 @@ from PIL import Image
 import requests
 from requests_oauthlib import OAuth1
 
+try:
+    from keys import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
+except ImportError:
+    raise Exception("You need to define your keys in keys.py")
+
 HAAR_FACE = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml"
 WORKERS = 3
-AUTH = OAuth1(  'D5YcTlIiPqBS2f6vFjvoBw',
-                'neyANLWJRrhrYG3RejfADAHslMMHDhOpw4cMZZ4d0XQ',
-                '471652063-JjY1SSsmVNWIP58fa9mqcF2ERS6U5IsjT6EOpKk',
-                'rTgP3coux1pENBxsX8GM68FnHCFHPrMSO7urDtTcs')
+AUTH = OAuth1(  CONSUMER_KEY,
+                CONSUMER_SECRET,
+                ACCESS_TOKEN,
+                ACCESS_TOKEN_SECRET)
 
 BUSEYS_PATH = os.path.join(os.getcwd(), 'faces')
 BUSEYS = [Image.open(os.path.join(BUSEYS_PATH, filename)) for filename in os.listdir(BUSEYS_PATH)]
